@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Bikeslot.css">
+  <title>Bike Parking</title>
+</head>
+<body>
+
+  <!-- Navbar Section -->
+  <nav>
+    <!-- Add your navbar content here -->
+  </nav>
+
+  <div class="center-container">
+    <div class="max-width-container">
+      <div class="parking-management-system">
+        <h2>Bike Parking</h2>
+
+        <!-- Slots Container -->
+        <div class="slots-container">
+          <div class="slots">
+            <!-- Static Example for Available, Booked, and Selected Slots -->
+            <div class="bikeslot available" id="slot-1">1</div>
+            <div class="bikeslot booked" id="slot-2">2</div>
+            <div class="bikeslot selected" id="slot-3">3</div>
+            <div class="bikeslot available" id="slot-4">4</div>
+            <!-- Repeat for all available slots, dynamically rendered by JavaScript in actual app -->
+          </div>
+        </div>
+
+        <!-- Slot Status Section -->
+        <div class="slot-status">
+          <p>Available Slots: <span id="availableSlots">36</span></p>
+          <p>Selected Slots: <span id="selectedSlotsCount">0</span></p>
+        </div>
+
+        <!-- Receipt Button (Visible when slots are selected) -->
+        <button id="receiptButton">Receipt</button>
+
+        <!-- Receipt Section (Visible when slots are selected) -->
+        <div id="receipt" class="receipt" style="display: none;">
+          <h3>Receipt</h3>
+          <p>Number of Slots Booked: <span id="numberOfSlots">0</span></p>
+          <p>Selected Slots: <span id="selectedSlotList"></span></p>
+          <p>Total Price: <span id="totalPrice">0</span> INR</p>
+          <a href="/Qrbike"><button>Pay</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Simulate the dynamic functionality in the HTML
+    let availableSlots = Array.from({ length: 36 }, (_, i) => i + 1);
+    let selectedSlots = [];
+    let bookedSlots = []; // This should be populated by fetching from the server
+
+    // Function to handle slot selection
+    function handleSlotSelection(slot) {
+      const slotElement = document.getElementById(`slot-${slot}`);
+      if (selectedSlots.includes(slot)) {
+        selectedSlots = selectedSlots.filter(selectedSlot => selectedSlot !== slot);
+        slotElement.classList.remove('selected');
+      } else if (!bookedSlots.includes(slot)) {
+        selectedSlots.push(slot);
+        slotElement.classList.add('selected');
+      }
+
+      document.getElementById('selectedSlotsCount').textContent = selectedSlots.length;
+      document.getElementById('receiptButton').style.display = selectedSlots.length > 0 ? 'block' : 'none';
+    }
+
+    // Function to show the receipt
+    function showReceipt() {
+      const totalPrice = selectedSlots.length * 30;
+      document.getElementById('numberOfSlots').textContent = selectedSlots.length;
+      document.getElementById('selectedSlotList').textContent = selectedSlots.join(', ');
+      document.getElementById('totalPrice').textContent = totalPrice;
+      document.getElementById('receipt').style.display = 'block';
+    }
+
+    // Initialize slot elements and attach event listeners
+    availableSlots.forEach(slot => {
+      const slotElement = document.getElementById(`slot-${slot}`);
+      if (slotElement) {
+        slotElement.addEventListener('click', () => handleSlotSelection(slot));
+      }
+    });
+
+    // Attach receipt button functionality
+    document.getElementById('receiptButton').addEventListener('click', showReceipt);
+  </script>
+
+</body>
+</html>

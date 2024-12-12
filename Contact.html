@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Contact.css">
+  <title>Contact Us</title>
+</head>
+<body>
+
+  <!-- Navbar (You will need to include or manually add the Navbar content) -->
+  <nav>
+    <!-- Navbar content goes here -->
+  </nav>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+
+    <!-- Home Button -->
+    <a href="index.html">
+      <button style="background-color: #378be4;">Home</button>
+    </a>
+
+    <!-- Contact Information Section -->
+    <div class="contact-info">
+      <p><strong>Email:</strong> app@example.com</p>
+      <p><strong>Phone:</strong> 7804995620</p>
+      <p><strong>Address:</strong> 123 Street, Indore</p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <form action="submit_contact_form.php" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Feedback Box -->
+    <div class="feedback-box">
+      <h3>Feedback</h3>
+      <textarea id="feedback" name="feedback" rows="5" placeholder="Enter your feedback here"></textarea>
+      <button type="submit">Submit Feedback</button>
+    </div>
+    
+  </div>
+
+</body>
+</html>

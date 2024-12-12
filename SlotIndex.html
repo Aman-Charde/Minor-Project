@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Parking Slot Management</title>
+  <link rel="stylesheet" href="SlotIndex.css">
+</head>
+<body>
+
+  <!-- Navbar (You can adjust this section as per your navbar layout) -->
+  <nav class="navbar">
+    <ul style="font-size: large;">
+      <li><a href="/Home.html"><strong>Home</strong></a></li>
+      <li><a href="/Dashboard.html"><strong>Dashboard</strong></a></li>
+      <li><a href="/Contact.html"><strong>Contact</strong></a></li>
+      <li><a href="/About.html"><strong>About Us</strong></a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="center-container">
+    <div class="max-width-container">
+      <div class="parking-management-system">
+        <h2>Car Parking</h2>
+        
+        <!-- Slot Selection -->
+        <div class="slots-container">
+          <div class="slots">
+            <!-- Slot HTML structure, dynamically generated in JS -->
+            <!-- You would need to use JavaScript to fill in these slots based on available and selected slots -->
+            <div class="slot" id="slot-36">36</div>
+            <div class="slot selected" id="slot-37">37</div>
+            <div class="slot booked" id="slot-38">38</div>
+            <!-- More slots here... -->
+          </div>
+        </div>
+
+        <!-- Slot Status -->
+        <div class="slot-status">
+          <p>Available Slots: 32</p>
+          <p>Selected Slots: 1</p>
+        </div>
+
+        <!-- Receipt Button -->
+        <button id="receiptButton">Receipt</button>
+
+        <!-- Receipt Display (This will show once slots are selected) -->
+        <div id="receipt" class="receipt" style="display: none;">
+          <h3>Receipt</h3>
+          <p>Number of Slots Booked: 1</p>
+          <p>Selected Slots: 37</p>
+          <a href="/Qrbike"><button>Pay</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript to handle slot selection and receipt display -->
+  <script>
+    // Simulated data: available and booked slots
+    const availableSlots = [36, 37, 38, 39, 40, 41, 42, 43, 44, 45]; // example available slots
+    const bookedSlots = [38]; // example booked slot
+    let selectedSlots = [];
+
+    // Function to handle slot selection
+    function handleSlotSelection(slotId) {
+      const slotElement = document.getElementById(`slot-${slotId}`);
+      if (slotElement.classList.contains('selected')) {
+        slotElement.classList.remove('selected');
+        selectedSlots = selectedSlots.filter(slot => slot !== slotId);
+      } else if (!bookedSlots.includes(slotId)) {
+        slotElement.classList.add('selected');
+        selectedSlots.push(slotId);
+      }
+      updateSlotStatus();
+    }
+
+    // Function to update the slot status text
+    function updateSlotStatus() {
+      document.querySelector('.slot-status p:nth-child(1)').textContent = `Available Slots: ${availableSlots.length - selectedSlots.length}`;
+      document.querySelector('.slot-status p:nth-child(2)').textContent = `Selected Slots: ${selectedSlots.length}`;
+    }
+
+    // Function to display the receipt when button is clicked
+    document.getElementById('receiptButton').addEventListener('click', function() {
+      document.getElementById('receipt').style.display = 'block';
+      document.querySelector('#receipt p:nth-child(2)').textContent = `Selected Slots: ${selectedSlots.join(', ')}`;
+    });
+
+    // Add event listeners to slot elements (dynamically generated slots)
+    availableSlots.forEach(slot => {
+      const slotElement = document.getElementById(`slot-${slot}`);
+      if (slotElement) {
+        slotElement.addEventListener('click', function() {
+          handleSlotSelection(slot);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

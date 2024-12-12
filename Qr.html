@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Payment</title>
+  <link rel="stylesheet" href="Qr.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- QRCode.js library -->
+</head>
+<body>
+
+  <!-- Navbar Placeholder (replace with actual navigation links if needed) -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="/home"><strong>Home</strong></a></li>
+      <li><a href="/dashboard"><strong>Dashboard</strong></a></li>
+      <li><a href="/contact"><strong>Contact</strong></a></li>
+      <li><a href="/about"><strong>About Us</strong></a></li>
+    </ul>
+  </nav>
+
+  <!-- QR Container -->
+  <div class="qr-container">
+    <h2>Scan QR Code to Pay</h2>
+    <!-- QR code generated here using a JavaScript library -->
+    <div id="qrcode"></div>
+    <p>Scan the QR code to proceed with payment.</p>
+    <hr>
+    <p>If you want to leave the slot, click here</p>
+    <button onclick="releaseSlot()">Release</button>
+  </div>
+
+  <script>
+    // Generate QR Code using JavaScript
+    const qrValue = "Your payment details here"; // Replace this with your actual payment details
+    QRCode.toCanvas(document.getElementById('qrcode'), qrValue, function (error) {
+      if (error) console.error(error);
+      console.log('QR code generated!');
+    });
+
+    // Function to handle release action
+    function releaseSlot() {
+      alert("Slot released successfully!");
+    }
+  </script>
+
+</body>
+</html>

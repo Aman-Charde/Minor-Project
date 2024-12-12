@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body>
+  <!-- Navbar Component -->
+  <nav>
+    <!-- Add your Navbar HTML here -->
+  </nav>
+
+  <div class="container-dashboard">
+    <div class="firstContainer">
+      <div class="profile">
+        <div class="image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKVgdPnMdBjCdxkKFnwvfzcvEA6RTfYRMuEA&s" alt="Profile" />
+        </div>
+        <div class="details">
+          <p><strong>Name:-</strong> John Doe</p> <!-- Static Name -->
+          <p><strong>Age:</strong> 25</p> <!-- Static Age -->
+        </div>
+        <div class="detail">
+          <p><strong>Vehicle Number:-</strong> ABC123</p> <!-- Static Vehicle Number -->
+          <p><strong>Email:-</strong> johndoe@example.com</p> <!-- Static Email -->
+          <p><strong>Contact No:-</strong> +1234567890</p> <!-- Static Contact Number -->
+          <p><strong>Address:-</strong> 123 Main St, City</p> <!-- Static Address -->
+        </div>
+      </div>
+    </div>
+
+    <div class="secondContainer">
+      <div class="box1">
+        <p><strong>Add Vehicle +</strong></p>
+        <div class="buttons">
+          <button>Bike/Scooter</button>
+          <button>Car</button>
+        </div>
+      </div>
+
+      <div class="box2">
+        <p>History</p>
+        <table id="vehicleTable">
+          <thead>
+            <tr>
+              <th>Vehicle No</th>
+              <th>Date</th>
+              <th>Entry Time</th>
+              <th>Exit Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example data, you can populate this table dynamically with JavaScript if needed -->
+            <tr>
+              <td>ABC123</td>
+              <td>2024-12-12</td>
+              <td>08:00 AM</td>
+              <td>05:00 PM</td>
+            </tr>
+            <tr>
+              <td>XYZ456</td>
+              <td>2024-12-11</td>
+              <td>09:00 AM</td>
+              <td>06:00 PM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
